@@ -68,7 +68,7 @@ def new():
   for length in range(1,10):
     for attempt in range(1,5):
       newid = ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for _ in range(length))
-      if Url.query(exists().where(URL.i != newid):
+      if Url.query(exists().where(URL.i != newid)):
         url = URL()
         url.u = request.values['url']
         url.e = request.values['email']
@@ -79,7 +79,7 @@ def new():
         return "YEY"
 
 @app.route('/update')
-def new():
+def update():
 
   if request.values['key']:
     url = URL()
