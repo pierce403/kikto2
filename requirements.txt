@@ -1,0 +1,20 @@
+# ----------------------
+# Flask
+# ----------------------
+flask
+requests
+
+# ----------------------
+# Testing
+# ----------------------
+mock
+
+
+# ----------------------
+# Production Server
+# ----------------------
+gevent
+gunicorn
+
+flask-sqlalchemy
+psycopg2
