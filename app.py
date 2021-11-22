@@ -104,9 +104,17 @@ def dump():
   msg="<pre>\n"
   for thing in Url.query.order_by(Url.ctime.desc()).all():
     #print("[+++] OMG STUFF '"+str(thing.domain)+"'")
-    msg+=thing.domain+"\n"
-    msg+=thing.headers+"\n"
-    msg+=thing.values+"\n\n"
+    msg+=thing.i+", "
+    msg+=thing.u+"\n"
 
   msg+="</pre>"
   return msg
+
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def catch_all(path):
+  try:
+    url = Url.query.filter(Url.i == path).one()
+    return render_template('redirect.html',redirect = url.u, hits = url.h)
+  except:
+    return("nope")
