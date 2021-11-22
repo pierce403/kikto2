@@ -35,11 +35,11 @@ db = SQLAlchemy(app)
 class Url(db.Model):
   id = db.Column(db.Integer, primary_key=True)
 
+  i = db.Column(db.String(20)) # id
+  k = db.Column(db.String(20)) # key
   u = db.Column(db.String(80)) # URL
-  i = db.Column(db.String(80)) # id
-  k = db.Column(db.String(80)) # key
-  e = db.Column(db.String(80)) # email
-  b = db.Column(db.String(80)) # bitcoin
+  e = db.Column(db.String(80)) # eth
+  g = db.Column(db.String(80)) # google analytics
   h = db.Column(db.Integer) # hits
 
   ctime = db.Column(DateTime, default=func.now())
@@ -86,6 +86,24 @@ def new():
         return render_template('success.html', newid = newid, key = key)
 
   return "nope"
+
+@app.route('/import', methods=("POST",))
+def import_data():
+  try:
+    url = Url()
+    url.i = request.form['i']
+    url.k = request.form['k']
+    url.u = request.form['u']
+    print(url.i)
+    print(url.k)
+    print(url.u)
+    db.session.add(url)
+    db.session.commit()
+    return("yay")
+  except Exception as e:
+    print('whoops '+str(e))
+    return('boo') 
+
 
 @app.route('/update')
 def update():
