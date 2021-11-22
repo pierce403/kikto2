@@ -37,7 +37,7 @@ class Url(db.Model):
 
   i = db.Column(db.String(20), unique=True) # id
   k = db.Column(db.String(20)) # key
-  u = db.Column(db.String(80)) # URL
+  u = db.Column(db.String(800)) # URL
   e = db.Column(db.String(80)) # eth
   g = db.Column(db.String(80)) # google analytics
   h = db.Column(db.Integer) # hits
