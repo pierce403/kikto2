@@ -127,7 +127,7 @@ def update():
       url.i = request.values['id']
       url.u = request.values['url']
       url.e = request.values['eth']
-      url.b = request.values['ga']
+      url.g = request.values['ga']
       db.session.add(url)
       db.session.commit()
       return "update success"
