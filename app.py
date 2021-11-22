@@ -60,7 +60,7 @@ def favicon():
                           'favicon.ico',mimetype='image/vnd.microsoft.icon')
 
 @app.route('/ads.txt')
-def favicon():
+def ads_txt():
     return send_from_directory(os.path.join(app.root_path, 'static'), 'ads.txt')
 
 
