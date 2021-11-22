@@ -116,12 +116,18 @@ def new():
 @app.route('/update', methods=("POST",))
 def update():
 
-  if request.values['key']:
-    url = Url.query.filter(Url.k == request.values['key']).one()
-    url.i = request.values['id']
-    url.u = request.values['url']
-    url.e = request.values['eth']
-    url.b = request.values['ga']
+  try:
+    if request.values['key']:
+      url = Url.query.filter(Url.k == request.values['key']).one()
+      url.i = request.values['id']
+      url.u = request.values['url']
+      url.e = request.values['eth']
+      url.b = request.values['ga']
+      db.session.add(url)
+      db.session.commit()
+      return "update success"
+  except:
+    return "update failed"
 
   # redirect to editor
 
