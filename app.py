@@ -152,6 +152,6 @@ def update():
 def catch_all(path):
   try:
     url = Url.query.filter(Url.i == path).one()
-    return render_template('redirect.html',redirect = url.u, hits = url.h)
+    return render_template('redirect.html',redirect = url.u, hits = url.h, ga=url.g)
   except:
     return("nope.  if you think this is an error, send angry tweets to @deanpierce")
