@@ -117,7 +117,7 @@ def new():
 def update():
 
   if request.values['key']:
-    url = Url.query.filter(Url.k == key).one()
+    url = Url.query.filter(Url.k == request.values['key']).one()
     url.i = request.values['id']
     url.u = request.values['url']
     url.e = request.values['eth']
