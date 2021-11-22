@@ -14,11 +14,12 @@ import requests
 from flask import send_from_directory
 from flask import Response
 
-import time
+import time, random, string
 from werkzeug.exceptions import Unauthorized
 
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Table, Column, Float, Integer, String, DateTime, MetaData, ForeignKey, func
+from sqlalchemy.sql import exists
 
 app = Flask(__name__,static_url_path='/static')
 #sslify = SSLify(app)
@@ -58,31 +59,39 @@ def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'),
                           'favicon.ico',mimetype='image/vnd.microsoft.icon')
 
-@app.route('/', methods=("GET", "POST", "OPTIONS"))
+@app.route('/', methods=("GET",))
 def index():
   return render_template('index.html')
 
-@app.route('/new')
+@app.route('/new', methods=("POST",))
 def new():
 
   for length in range(1,10):
     for attempt in range(1,5):
+      print("OMGYAY")
       newid = ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for _ in range(length))
-      if Url.query(exists().where(URL.i != newid)):
-        url = URL()
-        url.u = request.values['url']
-        url.e = request.values['email']
-        url.i = request.values['id']
-        url.b = request.values['btc']
-        db.session.add(interesting)
+      print(newid)
+      print("OMGYAY2")
+        #newid = ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for _ in range(length))
+      #if Url.query(exists().where(Url.i == newid)):
+      if not db.session.query(Url.query.filter(Url.i == newid).exists()).scalar():
+        key = ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for _ in range(10))
+        url = Url()
+        url.u = request.form['u']
+        url.i = newid
+        url.k = key
+        print(key)
+        db.session.add(url)
         db.session.commit() 
-        return "YEY"
+        return render_template('success.html', newid = newid, key = key)
+
+  return "nope"
 
 @app.route('/update')
 def update():
 
   if request.values['key']:
-    url = URL()
+    url = Url()
     url.u = request.values['url']
     url.e = request.values['email']
     url.i = request.values['id']
@@ -93,7 +102,7 @@ def update():
 @app.route('/dump')
 def dump():
   msg="<pre>\n"
-  for thing in Interesting.query.order_by(Interesting.ctime.desc()).all():
+  for thing in Url.query.order_by(Url.ctime.desc()).all():
     #print("[+++] OMG STUFF '"+str(thing.domain)+"'")
     msg+=thing.domain+"\n"
     msg+=thing.headers+"\n"
