@@ -61,6 +61,14 @@ def favicon():
 
 @app.route('/', methods=("GET",))
 def index():
+  key = request.args.get('k')
+  if key is not None:
+    url = Url.query.filter(Url.k == key).one()
+    if url is not None:
+      return render_template('update.html', key=key, id=url.i, url=url.u, eth=url.e, ga=url.g)
+    else:
+      return "bad key"
+
   return render_template('index.html')
 
 @app.route('/new', methods=("POST",))
@@ -105,15 +113,15 @@ def new():
 #    return('boo') 
 
 
-@app.route('/update')
+@app.route('/update', methods=("POST",))
 def update():
 
   if request.values['key']:
-    url = Url()
-    url.u = request.values['url']
-    url.e = request.values['email']
+    url = Url.query.filter(Url.k == key).one()
     url.i = request.values['id']
-    url.b = request.values['btc']
+    url.u = request.values['url']
+    url.e = request.values['eth']
+    url.b = request.values['ga']
 
   # redirect to editor
 
