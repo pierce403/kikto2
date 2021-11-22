@@ -68,10 +68,10 @@ def ads_txt():
 def index():
   key = request.args.get('k')
   if key is not None:
-    url = Url.query.filter(Url.k == key).one()
-    if url is not None:
+    try:
+      url = Url.query.filter(Url.k == key).one()
       return render_template('update.html', key=key, id=url.i, url=url.u, eth=url.e, ga=url.g)
-    else:
+    except:
       return "bad key"
 
   return render_template('index.html')
