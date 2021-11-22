@@ -87,22 +87,22 @@ def new():
 
   return "nope"
 
-@app.route('/import', methods=("POST",))
-def import_data():
-  try:
-    url = Url()
-    url.i = request.form['i']
-    url.k = request.form['k']
-    url.u = request.form['u']
-    print(url.i)
-    print(url.k)
-    print(url.u)
-    db.session.add(url)
-    db.session.commit()
-    return("yay")
-  except Exception as e:
-    print('whoops '+str(e))
-    return('boo') 
+#@app.route('/import', methods=("POST",))
+#def import_data():
+#  try:
+#    url = Url()
+#    url.i = request.form['i']
+#    url.k = request.form['k']
+#    url.u = request.form['u']
+#    print(url.i)
+#    print(url.k)
+#    print(url.u)
+#    db.session.add(url)
+#    db.session.commit()
+#    return("yay")
+#  except Exception as e:
+#    print('whoops '+str(e))
+#    return('boo') 
 
 
 @app.route('/update')
@@ -117,16 +117,16 @@ def update():
 
   # redirect to editor
 
-@app.route('/dump')
-def dump():
-  msg="<pre>\n"
-  for thing in Url.query.order_by(Url.ctime.desc()).all():
-    #print("[+++] OMG STUFF '"+str(thing.domain)+"'")
-    msg+=thing.i+", "
-    msg+=thing.u+"\n"
-
-  msg+="</pre>"
-  return msg
+#@app.route('/dump')
+#def dump():
+#  msg="<pre>\n"
+#  for thing in Url.query.order_by(Url.ctime.desc()).all():
+#    #print("[+++] OMG STUFF '"+str(thing.domain)+"'")
+#    msg+=thing.i+", "
+#    msg+=thing.u+"\n"
+#
+#  msg+="</pre>"
+#  return msg
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
