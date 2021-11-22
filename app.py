@@ -59,6 +59,11 @@ def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'),
                           'favicon.ico',mimetype='image/vnd.microsoft.icon')
 
+@app.route('/ads.txt')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'), 'ads.txt')
+
+
 @app.route('/', methods=("GET",))
 def index():
   key = request.args.get('k')
