@@ -149,4 +149,4 @@ def catch_all(path):
     url = Url.query.filter(Url.i == path).one()
     return render_template('redirect.html',redirect = url.u, hits = url.h)
   except:
-    return("nope")
+    return("nope.  if you think this is an error, send angry tweets to @deanpierce")
