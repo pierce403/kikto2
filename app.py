@@ -35,7 +35,7 @@ db = SQLAlchemy(app)
 class Url(db.Model):
   id = db.Column(db.Integer, primary_key=True)
 
-  i = db.Column(db.String(20)) # id
+  i = db.Column(db.String(20), unique=True) # id
   k = db.Column(db.String(20)) # key
   u = db.Column(db.String(80)) # URL
   e = db.Column(db.String(80)) # eth
