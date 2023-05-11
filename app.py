@@ -157,8 +157,8 @@ def update():
 def catch_all(path):
   print("loading catch_all")
   try:
-    #url = Url.query.filter(Url.i == path).one()
-    #return render_template('redirect.html',redirect = url.u, hits = url.h, ga=url.g)
-    return render_template('redirect.html',redirect = "https://www.google.com", hits = 0, ga="nothing")
+    url = Url.query.filter(Url.i == path).one()
+    return render_template('redirect.html',redirect = url.u, hits = url.h, ga=url.g)
+    #return render_template('redirect.html',redirect = "https://www.google.com", hits = 0, ga="nothing")
   except:
     return("nope.  if you think this is an error, send angry tweets to @deanpierce")
