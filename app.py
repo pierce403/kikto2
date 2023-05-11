@@ -68,11 +68,13 @@ def ads_txt():
 
 @app.route('/', methods=("GET",))
 def index():
+  print("loading index")
   key = request.args.get('k')
   if key is not None:
     try:
       url = Url.query.filter(Url.k == key).one()
       return render_template('update.html', key=key, id=url.i, url=url.u, eth=url.e, ga=url.g)
+      return render_template('update.html', key="p1", id="p2", url="google.com", eth=url.e, ga=url.g)
     except:
       return "bad key"
 
@@ -80,7 +82,7 @@ def index():
 
 @app.route('/new', methods=("POST",))
 def new():
-
+  print("loading new")
   for length in range(1,10):
     for attempt in range(1,5):
       print("OMGYAY")
@@ -122,6 +124,7 @@ def new():
 
 @app.route('/update', methods=("POST",))
 def update():
+  print("loading update")
 
   try:
     if request.values['key']:
@@ -152,6 +155,7 @@ def update():
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def catch_all(path):
+  print("loading catch_all")
   try:
     url = Url.query.filter(Url.i == path).one()
     return render_template('redirect.html',redirect = url.u, hits = url.h, ga=url.g)
