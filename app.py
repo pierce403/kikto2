@@ -44,8 +44,10 @@ class Url(db.Model):
 
   ctime = db.Column(DateTime, default=func.now())
 
-@app.before_first_request
-def setup():
+# fuck flask
+#@app.before_first_request
+#def setup():
+with app.app_context():
   print("[+] running setup")
   try:
     db.create_all()
