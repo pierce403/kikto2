@@ -74,7 +74,7 @@ def index():
     try:
       url = Url.query.filter(Url.k == key).one()
       return render_template('update.html', key=key, id=url.i, url=url.u, eth=url.e, ga=url.g)
-      return render_template('update.html', key="p1", id="p2", url="google.com", eth=url.e, ga=url.g)
+      #return render_template('update.html', key="p1", id="p2", url="google.com", eth=url.e, ga=url.g)
     except:
       return "bad key"
 
@@ -157,7 +157,8 @@ def update():
 def catch_all(path):
   print("loading catch_all")
   try:
-    url = Url.query.filter(Url.i == path).one()
-    return render_template('redirect.html',redirect = url.u, hits = url.h, ga=url.g)
+    #url = Url.query.filter(Url.i == path).one()
+    #return render_template('redirect.html',redirect = url.u, hits = url.h, ga=url.g)
+    return render_template('redirect.html',redirect = "https://www.google.com", hits = 0, ga="nothing")
   except:
     return("nope.  if you think this is an error, send angry tweets to @deanpierce")
