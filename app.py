@@ -47,13 +47,13 @@ class Url(db.Model):
 # fuck flask
 #@app.before_first_request
 #def setup():
-with app.app_context():
-  print("[+] running setup")
-  try:
-    db.create_all()
-    print("[+] created db")
-  except:
-    print("[+] db already exists")
+#with app.app_context():
+#  print("[+] running setup")
+#  try:
+#    db.create_all()
+#    print("[+] created db")
+#  except:
+#    print("[+] db already exists")
 
 
 @app.route('/favicon.ico')
