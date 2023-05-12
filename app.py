@@ -27,7 +27,7 @@ app.logger.addHandler(logging.StreamHandler(sys.stdout))
 app.logger.setLevel(logging.ERROR)
 
 try:
-  app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL2']
+  app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 except:
   app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///:memory:"
 db = SQLAlchemy(app)
