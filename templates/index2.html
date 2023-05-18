@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kik.to | URL Shortener</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        }
+        .logo {
+            text-align: center;
+            font-size: 30px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .description {
+            text-align: center;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        .input-group {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .input-group input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .input-group button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        .footer {
+            text-align: center;
+            color: #666;
+            margin-top: 20px;
+        }
+        .footer a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">Kik.to</div>
+        <div class="description">A simple, fast URL shortener. Enter your URL below:</div>
+        <form class="input-group" action="/new" method="POST">
+            <input type="text" name="u" placeholder="Enter your URL here...">
+            <button type="submit">Shorten</button>
+        </form>
+        <div class="result"></div>
+    </div>
+    <div class="footer">
+        <a href="#">Privacy Policy</a> | <a href="#">Contact</a> | <a href="#">About</a>
+    </div>
+</body>
+</html>
+

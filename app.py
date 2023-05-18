@@ -80,7 +80,7 @@ def index():
     except:
       return "bad key"
 
-  return render_template('index.html')
+  return render_template('index2.html')
 
 @app.route('/new', methods=("POST",))
 def new():
