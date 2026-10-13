@@ -5,14 +5,50 @@
   "compatibility_date": "2026-10-12",
   "workers_dev": true,
   "preview_urls": false,
-  "assets": { "directory": "build/assets", "binding": "ASSETS", "run_worker_first": true, "not_found_handling": "none" },
-  "vars": { "READ_ONLY": "true" },
-  "d1_databases": [{ "binding": "DB", "database_name": "kikto-production", "database_id": "44195d19-7f09-4e1b-9333-a40b6f73583b", "migrations_dir": "migrations" }],
-  "observability": { "enabled": true, "traces": { "enabled": true } },
-  "env": { "staging": {
-    "name": "kikto-staging",
-    "preview_urls": false,
-    "vars": { "READ_ONLY": "false" },
-    "d1_databases": [{ "binding": "DB", "database_name": "kikto-staging", "database_id": "0ed84580-cf36-4282-862b-380f54942279", "migrations_dir": "migrations" }]
-  } }
+  "assets": {
+    "directory": "build/assets",
+    "binding": "ASSETS",
+    "run_worker_first": true,
+    "not_found_handling": "none"
+  },
+  "vars": {
+    "READ_ONLY": "true"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "kikto-production",
+      "database_id": "44195d19-7f09-4e1b-9333-a40b6f73583b",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "observability": {
+    "enabled": true,
+    "traces": {
+      "enabled": true
+    }
+  },
+  "env": {
+    "staging": {
+      "name": "kikto-staging",
+      "preview_urls": false,
+      "vars": {
+        "READ_ONLY": "false"
+      },
+      "d1_databases": [
+        {
+          "binding": "DB",
+          "database_name": "kikto-staging",
+          "database_id": "0ed84580-cf36-4282-862b-380f54942279",
+          "migrations_dir": "migrations"
+        }
+      ]
+    }
+  },
+  "routes": [
+    {
+      "pattern": "kik.to/*",
+      "zone_name": "kik.to"
+    }
+  ]
 }
