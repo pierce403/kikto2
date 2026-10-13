@@ -17,7 +17,7 @@ psycopg2==2.9.6
 requests==2.30.0
 SQLAlchemy==2.0.13
 typing-extensions==4.5.0
-urllib3==2.0.2
+urllib3==2.8.0
 Werkzeug==2.3.4
 zipp==3.15.0
 zope.event==4.6
