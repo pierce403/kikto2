@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Cloudflare generated output and private recovery files
+node_modules/
+build/
+.wrangler/
+.dev.vars*
